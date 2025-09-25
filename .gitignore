@@ -1,0 +1,14 @@
+# Binaries
+bin/
+
+# Go stuff
+*.exe
+*.test
+*.out
+
+# Env files
+.env
+
+# IDE/editor configs
+.vscode/
+.idea/
