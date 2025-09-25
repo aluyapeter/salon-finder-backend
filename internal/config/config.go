@@ -1,6 +1,11 @@
 package config
 
-import "os"
+import (
+	// "log"
+	"os"
+
+	"github.com/aluyapeter/salon-finder-backend/internal/logger"
+)
 
 type Config struct {
 	Port  string
@@ -14,6 +19,9 @@ func Load() Config {
 	}
 
 	dburl := os.Getenv("DATABASE_URL")
+	if dburl == "" {
+		logger.New().Fatal("DB URL is required but not set")
+	}
 
 	return Config{
 		Port: port,
