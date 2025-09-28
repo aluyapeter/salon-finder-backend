@@ -18,7 +18,7 @@ func Load() Config {
 		port = "8080"
 	}
 
-	dburl := os.Getenv("DATABASE_URL")
+	dburl := os.Getenv("DB_URL")
 	if dburl == "" {
 		logger.New().Fatal("DB URL is required but not set")
 	}
