@@ -20,7 +20,7 @@ func Load() Config {
 
 	dburl := os.Getenv("DB_URL")
 	if dburl == "" {
-		logger.New().Fatal("DB URL is required but not set")
+		logger.New().Fatal("DB URL is required but not implemented")
 	}
 
 	return Config{
