@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS services;
+DROP TABLE IF EXISTS provider_profiles;
+DROP TABLE IF EXISTS users;

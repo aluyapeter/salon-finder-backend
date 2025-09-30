@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/aluyapeter/salon-finder-backend/internal/config"
+	"github.com/aluyapeter/salon-finder-backend/internal/db"
 	"github.com/aluyapeter/salon-finder-backend/internal/handlers"
 	"github.com/aluyapeter/salon-finder-backend/internal/logger"
 )
@@ -21,12 +22,19 @@ func main() {
 	cfg := config.Load()
 	logger := logger.New()
 
+	database, err := db.Connect(cfg.DBUrl)
+	if err != nil {
+		logger.Error("failed to connect to DB: " + err.Error())
+		return
+	}
+	defer database.Close()
+
 	// http.HandleFunc("/health", healthHandler)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", handlers.Health)
 
 	server := &http.Server{
-		Addr: ":"+ cfg.Port,
+		Addr:    ":" + cfg.Port,
 		Handler: mux,
 	}
 
@@ -35,7 +43,7 @@ func main() {
 
 	go func() {
 		logger.Info("Starting server on port " + cfg.Port)
-		if err := server.ListenAndServe(); err !=nil && err != http.ErrServerClosed {
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logger.Error("server error: " + err.Error())
 		}
 	}()
