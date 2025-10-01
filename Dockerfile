@@ -20,6 +20,7 @@ WORKDIR /app
 
 # Copy only the binary from builder
 COPY --from=builder /app/api .
+COPY --from=builder /app/.env .
 
 # Expose API port (adjust if your app uses another)
 EXPOSE 8080

@@ -21,7 +21,7 @@ type User struct {
 type ProviderProfile struct {
 	ID           int64     `db:"id"`
 	UserID       int64     `db:"user_id"`
-	BusinessNmae string    `db:"business_name"`
+	BusinessName string    `db:"business_name"`
 	Address      string    `db:"address"`
 	City         string    `db:"city"`
 	State        string    `db:"state"`
@@ -51,13 +51,13 @@ const (
 )
 
 type Booking struct {
-	ID        int64         `db:"id"`
-	UserID    int64         `db:"user_id"`
-	ServiceID int64         `db:"service_id"`
-	BookedAt  time.Time     `db:"booked_at"`
-	Status    BookingStatus `db:"status"`
-	CreatedAt time.Time     `db:"created_at"`
-	UpdatedAt time.Time     `db:"updated_at"`
+	ID              int64         `db:"id"`
+	UserID          int64         `db:"user_id"`
+	ServiceID       int64         `db:"service_id"`
+	AppointmentTime time.Time     `db:"appointment_time"`
+	Status          BookingStatus `db:"status"`
+	CreatedAt       time.Time     `db:"created_at"`
+	UpdatedAt       time.Time     `db:"updated_at"`
 }
 
 type Review struct {
@@ -66,6 +66,7 @@ type Review struct {
 	Rating    int       `db:"rating"`
 	Comment   string    `db:"comment"`
 	CreatedAt time.Time `db:"created_at"`
+	UpdatedAt time.Time `db:"updated_at"`
 }
 
 // type Salon struct {

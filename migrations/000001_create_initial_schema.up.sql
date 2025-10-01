@@ -35,7 +35,7 @@ CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     service_id INT NOT NULL REFERENCES services(id) ON DELETE CASCADE,
-    booked_at TIMESTAMP NOT NULL,
+    appointment_time TIMESTAMP NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('pending', 'confirmed','canceled')),
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW()
@@ -46,5 +46,6 @@ CREATE TABLE reviews (
     booking_id INT NOT NULL REFERENCES bookings(id) ON DELETE CASCADE,
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 )

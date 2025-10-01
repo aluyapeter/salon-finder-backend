@@ -1,14 +1,14 @@
 package db
 
 import (
-	"database/sql"
 	"time"
 
-	_ "github.com/lib/pq"
+	_ "github.com/jackc/pgx/v5/stdlib"
+	"github.com/jmoiron/sqlx"
 )
 
-func Connect(databaseURL string) (*sql.DB, error) {
-	db, err := sql.Open("postgres", databaseURL)
+func Connect(databaseURL string) (*sqlx.DB, error) {
+	db, err := sqlx.Open("pgx", databaseURL)
 	if err != nil {
 		return nil, err
 	}

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/aluyapeter/salon-finder-backend/internal/logger"
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -13,6 +14,8 @@ type Config struct {
 }
 
 func Load() Config {
+	_ = godotenv.Load()
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -24,7 +27,7 @@ func Load() Config {
 	}
 
 	return Config{
-		Port: port,
+		Port:  port,
 		DBUrl: dburl,
 	}
 }
